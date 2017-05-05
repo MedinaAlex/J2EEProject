@@ -1,0 +1,10 @@
+/build/
+/.classpath
+/.project
+/database.lck
+/database.log
+/database.properties
+/projet1.lck
+/projet1.log
+/projet1.properties
+/projet1.script
