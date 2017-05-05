@@ -1,5 +1,7 @@
 package fr.epsi.network.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -52,19 +54,55 @@ public class MessageDao implements IMessageDao{
 
 	@Override
 	public void addMessage(Message message) {
-		// TODO Auto-generated method stub
+		JDBC con = new JDBC();
+
+
+		try {
+			
+			Connection connexion = con.getConnection();
+			PreparedStatement ppr = connexion.prepareStatement("insert into messages values(?, ?, ?, ?, ?, ?, ?)");
+			ppr.setLong(1, message.getId());
+			ppr.setString(2, message.getTitle());
+			ppr.setString(3, message.getTitle());
+			ppr.setString(4, message.getContent());
+			ppr.setObject(5, message.getCreationDate());
+			ppr.setObject(6, message.getUpdateDate());
+			ppr.setObject(7, message.getStatus());
+			ppr.executeUpdate();
+			
+		} catch (Exception e) {
+		
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
-	public void updateMessageStatus(Message message, int status) {
-		// TODO Auto-generated method stub
+	public void updateMessageStatus(Message message, Status status) {
+		JDBC con = new JDBC();
 		
+		try {
+			Connection connexion = con.getConnection();
+			PreparedStatement ppr = connexion.prepareStatement("UPDATE messages set STATUS = ? WHERE id = ?");
+			ppr.setObject(1, status);
+			ppr.setLong(2, message.getId());
+			ppr.executeUpdate();
+			connexion.close();
+	        
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void deleteMessage(Message message) {
-		// TODO Auto-generated method stub
+		JDBC con = new JDBC();
+		
+		try {
+			con.sqlRequete("delete from message where id = '"+message.getId()+"'");
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class JDBC {
 	
-Connection connexion;
+	Connection connexion;
     
     Boolean isConnected = false;
     
@@ -23,6 +23,18 @@ Connection connexion;
             e.printStackTrace();
         } 
         
+    }
+    
+    public Connection getConnection() throws Exception{
+    	Connection connect = null;
+    	if(isConnected){
+    		connect = this.connexion;
+    	}
+    	else{
+    		throw new Exception("La connexion n'est pas établie");
+    	}
+    	
+    	return connect;
     }
     
     public ResultSet sqlRequete(String requete) throws SQLException{
