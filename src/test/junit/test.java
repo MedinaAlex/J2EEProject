@@ -1,4 +1,4 @@
-package fr.epsi.test.junit;
+package test.junit;
 
 import java.util.List;
 
