@@ -11,7 +11,7 @@ public interface IMessageDao {
 	List<Message> getListOfMessages(User user);
 	Message getMessage(Long id);
 	void addMessage(Message message);
-	void updateMessageStatus(Message message, Status status);
+	void updateMessageStatus(Message message, int status);
 	void deleteMessage(Message message);
 
 }

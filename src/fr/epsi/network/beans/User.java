@@ -35,5 +35,12 @@ public class User {
 	public void setAdministrator(Boolean administrator) {
 		this.administrator = administrator;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", password=" + password + ", administrator=" + administrator + "]";
+	}
+	
+	
 	
 }
