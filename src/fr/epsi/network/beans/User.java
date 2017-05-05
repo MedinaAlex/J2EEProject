@@ -7,6 +7,16 @@ public class User {
 	private String password;
 	private Boolean administrator;
 	
+	public User(){
+		super();
+	}
+	
+	public User(String id, String password, Boolean administrator) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.administrator = administrator;
+	}
 	public String getId() {
 		return id;
 	}

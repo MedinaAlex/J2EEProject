@@ -40,10 +40,12 @@ public class MessageDao implements IMessageDao{
 		try {
 			result = con.sqlRequete("select * from messages where ID = '" + id +"' ");
 			result.next();
-			//TODO User à récupérer
+
 			String id_user = result.getString(3);
+			IUserDao userDao = new UserDAO();
+			User user = userDao.getUserById(id_user);
 			 message = new Message(result.getLong(0), result.getString(1)
-            		, result.getString(2), new User() ,(Timestamp) result.getObject(4),(Timestamp) result.getObject(5),(Status) result.getObject(6));
+            		, result.getString(2), user ,(Timestamp) result.getObject(4),(Timestamp) result.getObject(5),(Status) result.getObject(6));
 	        
 		} catch (SQLException e) {
 		
