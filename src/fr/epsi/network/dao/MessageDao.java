@@ -81,7 +81,7 @@ public class MessageDao implements IMessageDao{
 	}
 
 	@Override
-	public void updateMessageStatus(Message message, Status status) {
+	public void updateMessageStatus(Message message, int status) {
 		JDBC con = new JDBC();
 		
 		try {
