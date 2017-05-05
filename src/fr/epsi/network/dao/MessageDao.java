@@ -37,6 +37,7 @@ public class MessageDao implements IMessageDao{
 		JDBC con = new JDBC();
 		ResultSet result;
 		Message message = null;
+		//bla
 		try {
 			result = con.sqlRequete("select * from messages where ID = '" + id +"' ");
 			result.next();
