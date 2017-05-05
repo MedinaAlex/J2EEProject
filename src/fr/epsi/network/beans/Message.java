@@ -10,14 +10,14 @@ public class Message {
 	private User author;
 	private Timestamp creationDate;
 	private Timestamp updateDate;
-	private Status status;
+	private int status;
 	
 	public Message(){
 		super();
 	}
 	
 	public Message(Long id, String title, String content, User author, Timestamp creationDate, Timestamp updateDate,
-			Status status) {
+			int status) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -29,10 +29,10 @@ public class Message {
 	}
 	
 	
-	public Status getStatus() {
+	public int getStatus() {
 		return status;
 	}
-	public void setStatus(Status status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 	public Long getId() {

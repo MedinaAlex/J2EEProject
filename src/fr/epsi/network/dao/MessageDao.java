@@ -23,7 +23,7 @@ public class MessageDao implements IMessageDao{
 			result = con.sqlRequete("select * from messages where ID_USER = '" + user.getId() +"' ");
 			while(result.next()){
 	            messages.add(new Message(result.getLong(0), result.getString(1)
-	            		, result.getString(2), user,(Timestamp) result.getObject(4),(Timestamp) result.getObject(5),(Status) result.getObject(6)));
+	            		, result.getString(2), user,(Timestamp) result.getObject(4),(Timestamp) result.getObject(5), result.getInt(6)));
 	        }
 		} catch (SQLException e) {
 			
@@ -46,7 +46,7 @@ public class MessageDao implements IMessageDao{
 			IUserDao userDao = new UserDAO();
 			User user = userDao.getUserById(id_user);
 			 message = new Message(result.getLong(0), result.getString(1)
-            		, result.getString(2), user ,(Timestamp) result.getObject(4),(Timestamp) result.getObject(5),(Status) result.getObject(6));
+            		, result.getString(2), user ,(Timestamp) result.getObject(4),(Timestamp) result.getObject(5), result.getInt(6));
 	        
 		} catch (SQLException e) {
 		

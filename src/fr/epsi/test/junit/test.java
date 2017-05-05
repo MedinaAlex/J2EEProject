@@ -16,10 +16,10 @@ public class test {
 		Long id = new Long(1);
 		
 		User admin = new User("1", "password", true);
-		Message ajaj = new Message(id, "title", "content", admin, new Timestamp(System.currentTimeMillis()), null,
-				Status.PUBLIC);
+		Message ajaj = new Message(id, "title", "content", admin, new Timestamp(System.currentTimeMillis()), null, 1);
 		MessageDao msgDao = new MessageDao();
 		msgDao.addMessage(ajaj);
+		
 		assertTrue(msgDao.getMessage(id) == ajaj);
 	}
 
