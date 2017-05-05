@@ -7,13 +7,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import fr.epsi.network.beans.User;
 
 public class UserDAO implements IUserDao {
 	
-	private static Logger logger = Logger.getLogger(UserDAO.class);
+	private static Logger logger = LogManager.getLogger(UserDAO.class);
 
 	@Override
 	public List<User> getListOfUsers() {

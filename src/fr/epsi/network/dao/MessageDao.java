@@ -8,15 +8,15 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import fr.epsi.network.beans.Message;
-import fr.epsi.network.beans.Status;
 import fr.epsi.network.beans.User;
 
 public class MessageDao implements IMessageDao{
 	
-	private static Logger logger = Logger.getLogger(UserDAO.class);
+	private static Logger logger = LogManager.getLogger(UserDAO.class);
 
 	@Override
 	public List<Message> getListOfMessages(User user) {
@@ -31,7 +31,7 @@ public class MessageDao implements IMessageDao{
 	        }
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			logger.error("Exception", e);
 		}
 		return messages;
 	}
@@ -46,7 +46,9 @@ public class MessageDao implements IMessageDao{
 			Connection connection = con.getConnection();
 			PreparedStatement stmt = connection.prepareStatement("select * from messages where ID = ?");
 			stmt.setLong(1, id);
+			logger.debug("select message " + id);
 			result = stmt.executeQuery();
+			
 			result.next();
 			
 			String id_user = result.getString(4);
@@ -54,12 +56,11 @@ public class MessageDao implements IMessageDao{
 			user = userDao.getUserById(id_user);
 			message = new Message(result.getLong(1), result.getString(2)
 	        		, result.getString(3), user ,(Timestamp) result.getObject(5),(Timestamp) result.getObject(6), result.getInt(7));
-			
-			
+
 	        
 		} catch (Exception e) {
 		
-			logger.debug("", e);
+			logger.error("Exception", e);
 		}
 		return message;
 	}
@@ -67,7 +68,6 @@ public class MessageDao implements IMessageDao{
 	@Override
 	public void addMessage(Message message) {
 		JDBC con = new JDBC();
-
 
 		try {
 			
@@ -80,11 +80,13 @@ public class MessageDao implements IMessageDao{
 			ppr.setObject(5, message.getCreationDate());
 			ppr.setObject(6, message.getUpdateDate());
 			ppr.setObject(7, message.getStatus());
+			
+			logger.debug("insert message " + message.getId());
 			ppr.executeUpdate();
+			connexion.close();
 			
 		} catch (Exception e) {
-		
-			e.printStackTrace();
+			logger.error("Exception", e);
 		}
 		
 	}
@@ -98,11 +100,13 @@ public class MessageDao implements IMessageDao{
 			PreparedStatement ppr = connexion.prepareStatement("UPDATE messages set STATUS = ? WHERE id = ?");
 			ppr.setInt(1, status);
 			ppr.setLong(2, message.getId());
-			ppr.executeUpdate();
+			
+			logger.debug("Update du message " + message.getId());
+			ppr.executeUpdate();		
 			connexion.close();
 	        
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Exception", e);
 		}
 	}
 
@@ -112,13 +116,10 @@ public class MessageDao implements IMessageDao{
 		
 		try {
 			con.sqlRequete("delete from messages where id = '"+message.getId()+"'");
+			logger.debug("Message " + message.getId() + " supprimé");
 			
-			logger.info("Message " + message.getId() + " supprimé");
 		}catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
+		}	
 	}
-	
-
 }
