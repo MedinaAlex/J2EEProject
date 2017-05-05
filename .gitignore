@@ -1,4 +1,5 @@
 /build/
+/.settings/
 /.classpath
 /.project
 /database.lck
@@ -8,3 +9,4 @@
 /projet1.log
 /projet1.properties
 /projet1.script
+
