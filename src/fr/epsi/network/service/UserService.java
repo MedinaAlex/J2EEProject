@@ -6,7 +6,11 @@ import fr.epsi.network.beans.User;
 import fr.epsi.network.dao.UserDAO;
 
 public class UserService implements IUserService {
-	UserDAO userDao;
+	UserDAO userDao = new UserDAO();
+	
+	public UserService() {
+		super();
+	}
 
 	@Override
 	public List<User> getListOfUsers() {

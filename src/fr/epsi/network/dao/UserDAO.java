@@ -15,6 +15,10 @@ import fr.epsi.network.beans.User;
 public class UserDAO implements IUserDao {
 	
 	private static Logger logger = LogManager.getLogger(UserDAO.class);
+	
+	public UserDAO() {
+		super();
+	}
 
 	@Override
 	public List<User> getListOfUsers() {
@@ -40,7 +44,7 @@ public class UserDAO implements IUserDao {
 		ResultSet result;
 		User user = new User();
 		try {
-			result = con.sqlRequete("select * from USERS where ID = " + id);
+			result = con.sqlRequete("select * from USERS where ID = '" + id +"'");
 			result.next();
 			user = new User(result.getString(1), result.getString(2), result.getBoolean(3));
 

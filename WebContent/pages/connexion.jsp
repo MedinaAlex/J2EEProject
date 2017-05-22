@@ -1,6 +1,6 @@
 <h1>form</h1>
 
-<form method="post" action="connexion">
+<form method="post" action="Connexion">
     <fieldset>
         <legend>Connexion</legend>
         <p>Saisissez votre ID et votre mot de passe</p>

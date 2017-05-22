@@ -23,7 +23,7 @@ public class Connexion extends HttpServlet {
 	
 	private static Logger logger = LogManager.getLogger(Connexion.class);
 	
-	UserService userService;
+	UserService userService = new UserService();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -38,10 +38,13 @@ public class Connexion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		logger.info(request.getParameter("id"));
 		User user = userService.getUserById(request.getParameter("id"));
 		if(user.getPassword() == request.getParameter("password")){
 			request.getSession().setAttribute("user", user);
 			request.getRequestDispatcher("accueil").forward(request, response);
+		}else{
+			request.getRequestDispatcher("connexion.jsp").forward(request, response);
 		}
 	}
 
