@@ -24,6 +24,7 @@ String content = (String)request.getAttribute("content");
 	</div>
 	<div class="row">
 	<% if (logged) { %>
+		<div class="col-xs-4"><a href="/myEpsi/pages/addMessage.jsp">Ajouter un message</a></div>
 		<div class="col-xs-4">Déconnexion</div>
 	<% } else { %>
 		<div class="col-xs-4"><a href="/myEpsi/pages/connexion.jsp">Connexion</a></div>

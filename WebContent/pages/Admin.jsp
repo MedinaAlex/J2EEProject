@@ -18,7 +18,7 @@
 		out.println("id = " + user.getId());
 		out.println("<br>");
 		if(!user.getAdministrator()){
-			out.println("<a href='/fr.epsi.network/supprimerUser?id=" + user.getId() +"'>Supprimer l'utilisateur</a>") ;
+			out.println("<a href='/myEpsi/supprimerUser?id=" + user.getId() +"'>Supprimer l'utilisateur</a>") ;
 		}
 	}
 

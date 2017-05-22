@@ -11,10 +11,10 @@
 <% 
 	User user = (User) request.getSession().getAttribute("user");
 	if(user.getAdministrator()){
-		out.println("<a href='/fr.epsi.network/Admin'>Administrer</a>") ;
+		out.println("<a href='/myEpsi/Admin'>Administrer</a>") ;
 	}
 %>
-<a href="/fr.epsi.network/pages/addMessage.jsp">Ajouter un message</a>
+<a href="/myEpsi/pages/addMessage.jsp">Ajouter un message</a>
 <br>
 Voici la liste des messages :
 <%
@@ -29,7 +29,7 @@ Voici la liste des messages :
 		out.println("message = " + message.getContent());
 		out.println("<br>");
 		if (user.getId() == message.getAuthor().getId()){
-			out.println("<a href='/fr.epsi.network/supprimerMessage?id=" + message.getId() +"'>Supprimer le message</a>") ;
+			out.println("<a href='/myEpsi/supprimerMessage?id=" + message.getId() +"'>Supprimer le message</a>") ;
 		}
 		
 		
