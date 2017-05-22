@@ -1,12 +1,7 @@
-<<<<<<< HEAD
+
 <h1>form</h1>
-<<<<<<< HEAD
-=======
-<a href="/fr.epsi.network/pages/register.jsp">Inscription</a>
-=======
-<br>
->>>>>>> 521e36d229a5c7100c01a84eedfc730cfae0f90a
->>>>>>> ebcc1f9e21ce4406623827808b13532f46ed98d9
+
+
 <form method="post" action="connexion">
     <fieldset>
         <legend>Connexion</legend>
