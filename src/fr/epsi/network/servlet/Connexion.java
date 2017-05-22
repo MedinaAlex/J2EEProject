@@ -37,26 +37,29 @@ public class Connexion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("content", "connexion");
+		request.getRequestDispatcher("/index").forward(request, response);
 		
-		User user = userService.getUserById(request.getParameter("id"));
-		
-		if(user.getPassword().equals(request.getParameter("password"))){
-			logger.info("go");
-			request.getSession().setAttribute("user", user);
-			request.getRequestDispatcher("/messages").forward(request, response);
-			
-		}else{
-			logger.info("pasgo");
-			request.getRequestDispatcher("/pages/connexion.jsp").forward(request, response);
-		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		User user = userService.getUserById(request.getParameter("id"));
+		
+		if(user.getPassword().equals(request.getParameter("password"))){
+			logger.info("go");
+			request.getSession().setAttribute("user", user);
+			request.setAttribute("content", "messages");
+			request.getRequestDispatcher("/index").forward(request, response);
+			
+		}else{
+			logger.info("pasgo");
+			request.setAttribute("content", "connexion");
+			request.getRequestDispatcher("/index").forward(request, response);
+		}
 	}
 
 }

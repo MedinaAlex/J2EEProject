@@ -4,5 +4,6 @@ import fr.epsi.network.beans.User;
 
 public interface IConnectionService {
 
-	boolean isAuthorized(User user);
+	boolean isAdmin(User user);
+	
 }

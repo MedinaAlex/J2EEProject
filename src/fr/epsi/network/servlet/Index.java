@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.epsi.network.beans.User;
+
 /**
  * Servlet implementation class Index
  */
@@ -26,7 +28,14 @@ public class Index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("name", "value");
+		User user = (User) request.getSession().getAttribute("user");
+		
+		if (user == null) {
+			request.setAttribute("logged", false);
+		} else {
+			request.setAttribute("logged", true);
+		}
+		
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 

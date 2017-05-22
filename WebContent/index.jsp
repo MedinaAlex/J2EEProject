@@ -2,13 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="lib/js/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="lib/css/bootstrap.min.css">
 <link rel="stylesheet" href="lib/css/bootstrap-theme.min.css">
+<script src="lib/js/jquery-3.2.1.min.js"></script>
 <script src="lib/js/bootstrap.min.js"></script>
 <title>index.html</title>
 </head>
 <body>
+
+<%
+boolean logged = (boolean)request.getAttribute("logged");
+String content = (String)request.getAttribute("content");
+%>
 
 <div class="container-fluid">
 	<div class="row">
@@ -17,18 +22,31 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-4">Menu1</div>
-		<div class="col-xs-4">Menu2</div>
-		<div class="col-xs-4">Menu3</div>
+	<% if (logged) { %>
+		<div class="col-xs-4">Déconnexion</div>
+	<% } else { %>
+		<div class="col-xs-4"><a href="pages/connexion">Connexion</a></div>
+		<div class="col-xs-4"><a href="pages/register">Inscription</a></div>
+	<% } %>
 	</div>
 </div>
 
 
 
-<div style="border:2px solid red">
-${name}
+<div class="col-xs-4" style="border:2px solid red">
+user : ${user}
 </div>
-<%@include file="pages/home.jsp" %>
+<div class="col-xs-4" style="border:2px solid red">
+content : ${content}
+</div>
+
+<br>
+		
+<% if (content == "connexion") { %>
+	<%@include file="pages/connexion.jsp"%>
+<% } else { %>
+	<%@include file="pages/home.jsp"%>
+<% } %>
 
 </body>
 </html>
