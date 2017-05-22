@@ -18,6 +18,8 @@ public class MessageDao implements IMessageDao{
 	
 	private static Logger logger = LogManager.getLogger(UserDAO.class);
 	
+	UserDAO userDAO = new UserDAO();
+	
 	public MessageDao() {
 		super();
 	}
@@ -125,5 +127,25 @@ public class MessageDao implements IMessageDao{
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}	
+	}
+	
+	@Override
+	public List<Message> getAllMessage(User user) {
+		JDBC con = new JDBC();
+		List<Message> messages= new ArrayList<>();
+		ResultSet result;
+		try {
+			result = con.sqlRequete("select * from messages where status = 1 OR USER_ID = '" + user.getId() +"'");
+			while(result.next()){
+				String id = result.getString(4);
+				User user2 = userDAO.getUserById(id);
+	            messages.add(new Message(result.getLong(1), result.getString(2)
+	            		, result.getString(3), user2,(Timestamp) result.getObject(5),(Timestamp) result.getObject(6), result.getInt(7)));
+	        }
+		} catch (SQLException e) {
+			
+			logger.error("Exception", e);
+		}
+		return messages;
 	}
 }
