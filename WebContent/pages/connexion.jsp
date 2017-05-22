@@ -1,5 +1,5 @@
 <h1>form</h1>
-
+<a href="/fr.epsi.network/pages/register.jsp">Inscription</a>
 <form method="post" action="connexion">
     <fieldset>
         <legend>Connexion</legend>
