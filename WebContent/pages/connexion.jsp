@@ -1,12 +1,11 @@
-<h1>form</h1>
-
+<br>
 <form method="post" action="connexion">
     <fieldset>
         <legend>Connexion</legend>
         <p>Saisissez votre ID et votre mot de passe</p>
 
         <label for="id">Adresse email <span class="requis">*</span></label>
-        <input type="text" id="id" name="id" value="<c:out value="${user.id}"/>" size="20" maxlength="60" />
+        <input type="text" id="id" name="id" size="20" maxlength="60" />
         <span class="erreur">${form.erreurs['id']}</span>
         <br />
 
