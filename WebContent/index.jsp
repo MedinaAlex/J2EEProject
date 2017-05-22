@@ -13,7 +13,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<h1>TITRE</h1>
+			<h1>myEpsi</h1>
 		</div>
 	</div>
 	<div class="row">
@@ -22,6 +22,13 @@
 		<div class="col-xs-4">Menu3</div>
 	</div>
 </div>
+
+
+
+<div style="border:2px solid red">
+${name}
+</div>
+<%@include file="pages/home.jsp" %>
 
 </body>
 </html>
