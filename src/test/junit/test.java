@@ -80,7 +80,10 @@ public class test {
 		
 		List<User> users = userDao.getListOfUsers();
 		
+		User user2 = userDao.getUserById("117");
+		
 		Assert.assertTrue(!users.isEmpty());
+		Assert.assertEquals(user1, user2);
 		Assert.assertTrue(users.get(1).getAdministrator());
 		
 		userDao.deleteUser(user1);
