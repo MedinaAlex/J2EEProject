@@ -1,27 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-   <%@ page import="java.util.List, fr.epsi.network.beans.Message" %>
+   <%@ page import="java.util.List, fr.epsi.network.beans.Message, fr.epsi.network.beans.User" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Ajout d'un message</title>
 </head>
 <body>
-qlesghdsmgjpkdmorhonpopsdgn
-
+<a href="/fr.epsi.network/pages/addMessage.jsp">Ajouter un message</a>
+<br>
+Voici la liste des messages :
 <%
 	List<Message> messages = (List<Message>) request.getSession().getAttribute("messages");
+	User user = (User) request.getSession().getAttribute("user");
 
 	for(Message message : messages){
-
-		out.println(message.getTitle());
-		out.println(message.getContent());
-		out.println();
-		out.println();
-		out.println();
-		out.println();
-		out.println();
+		out.println("<br><br>");
+		
+		out.println("titre = " + message.getTitle());
+		out.println("<br>");
+		out.println("message = " + message.getContent());
+		out.println("<br>");
+		if (user.getId() == message.getAuthor().getId()){
+			out.println("<a href='/fr.epsi.network/supprimerMessage?id=" + message.getId() +"'>Supprimer le message</a>") ;
+		}
+		
+		
 		
 	}
 

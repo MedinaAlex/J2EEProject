@@ -1,8 +1,8 @@
 package fr.epsi.network.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,12 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import fr.epsi.network.beans.Message;
 import fr.epsi.network.beans.User;
 import fr.epsi.network.service.MessageService;
+import fr.epsi.network.service.UserService;
 
 /**
- * Servlet implementation class Messages
+ * Servlet implementation class AddMesagge
  */
-@WebServlet("/messages")
-public class MessagesServlet extends HttpServlet {
+@WebServlet("/pages/addMessage")
+public class AddMesagge extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	MessageService messageService = new MessageService();
@@ -26,7 +27,7 @@ public class MessagesServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MessagesServlet() {
+    public AddMesagge() {
         super();
     }
 
@@ -35,17 +36,17 @@ public class MessagesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Message> messages = new ArrayList<>();
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		int status = Integer.parseInt(request.getParameter("status"));
 		User user = (User) request.getSession().getAttribute("user");
 		
-		String id = request.getParameter("idMessage");
-		if(id == null){
-			messages = messageService.getAllMessage(user);
-		}else {
-			messages.add(messageService.getMessage(Long.valueOf(id)));
-		}
-		request.getSession().setAttribute("messages", messages);
-		request.getRequestDispatcher("/pages/messages.jsp").forward(request, response);
+		Timestamp timestamp = new Timestamp(new Date().getTime());
+		
+		Message message = new Message(null, title, content, user,timestamp, timestamp, status);
+		messageService.addMessage(message);
+		
+		request.getRequestDispatcher("/messages").forward(request, response);
 	}
 
 	/**

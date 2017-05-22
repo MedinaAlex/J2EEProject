@@ -12,5 +12,6 @@ public interface IMessageService {
 	void addMessage(Message message);
 	void updateMessageStatus(Message message, int status);
 	void deleteMessage(Message message);
+	List<Message> getAllMessage(User user);
 
 }

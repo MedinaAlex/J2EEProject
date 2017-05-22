@@ -31,7 +31,7 @@ public class MessageService implements IMessageService {
 	@Override
 	public void addMessage(Message message) {
 		JDBC jdbc = new JDBC();
-		String id = "";
+		String id = "0";
 		try {
 			ResultSet result = jdbc.sqlRequete("SELECT ID FROM MESSAGES where ID = (select max(ID) from messages)");
 			result.next();
@@ -53,6 +53,11 @@ public class MessageService implements IMessageService {
 	public void deleteMessage(Message message) {
 		//TODO check si c'est le bon user
 		messageDao.deleteMessage(message);
+	}
+	
+	@Override
+	public List<Message> getAllMessage(User user) {
+		return messageDao.getAllMessage(user);
 	}
 
 }
