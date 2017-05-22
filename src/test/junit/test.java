@@ -5,8 +5,6 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.sun.corba.se.spi.servicecontext.UEInfoServiceContext;
-
 import fr.epsi.network.beans.Message;
 import fr.epsi.network.beans.User;
 import fr.epsi.network.dao.MessageDao;

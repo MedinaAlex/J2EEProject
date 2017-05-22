@@ -23,8 +23,15 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void addUser(User user) {
-		userDao.addUser(user);
+	public void addUser(User user) throws Exception {
+		User getUser = userDao.getUserById(user.getId());
+		if(getUser.getId() == null){
+			userDao.addUser(user);
+		}else{
+			throw new Exception("User déjà existant");
+		}
+		
+		
 		
 	}
 

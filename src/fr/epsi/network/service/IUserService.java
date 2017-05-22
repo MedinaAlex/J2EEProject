@@ -8,7 +8,7 @@ public interface IUserService {
 
 	List<User> getListOfUsers();
 	User getUserById(String id);
-	void addUser(User user);
+	void addUser(User user) throws Exception;
 	void updateUser(User user);
 	void deleteUser(User user);
 

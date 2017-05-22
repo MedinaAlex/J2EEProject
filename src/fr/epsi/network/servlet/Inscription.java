@@ -1,7 +1,6 @@
 package fr.epsi.network.servlet;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,10 +14,10 @@ import fr.epsi.network.beans.User;
 import fr.epsi.network.service.UserService;
 
 /**
- * Servlet implementation class Connexion
+ * Servlet implementation class Inscription
  */
-@WebServlet("/pages/connexion")
-public class Connexion extends HttpServlet {
+@WebServlet("/pages/register")
+public class Inscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private static Logger logger = LogManager.getLogger(Connexion.class);
@@ -28,7 +27,7 @@ public class Connexion extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Connexion() {
+    public Inscription() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,21 +36,18 @@ public class Connexion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id = request.getParameter("id");
+		String password = request.getParameter("password");
 		
-
-		User user = userService.getUserById(request.getParameter("id"));
-		
-		logger.info(user.getPassword());
-		logger.info(request.getParameter("password"));
-		
-		if(user.getPassword().equals(request.getParameter("password"))){
-			logger.info("go");
-			request.getSession().setAttribute("user", user);
+		try {
+			userService.addUser(new User(id, password, false));
+			logger.info("User ajouté");
 			request.getRequestDispatcher("/pages/home").forward(request, response);
-			
-		}else{
-			request.getRequestDispatcher("/pages/connexion.jsp").forward(request, response);
+		} catch (Exception e) {
+			logger.error("User existant", e);
+			request.getRequestDispatcher("/pages/register").forward(request, response);
 		}
+		
 	}
 
 	/**
