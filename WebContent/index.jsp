@@ -33,15 +33,6 @@ String content = (String)request.getAttribute("content");
 	</div>
 </div>
 
-
-
-<div class="col-xs-4" style="border:2px solid red">
-user : ${user}
-</div>
-<div class="col-xs-4" style="border:2px solid red">
-content : ${content}
-</div>
-
 <br>
 
 <div class="container">
