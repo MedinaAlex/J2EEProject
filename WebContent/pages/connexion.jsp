@@ -1,12 +1,16 @@
+<<<<<<< HEAD
 <h1>form</h1>
 <a href="/fr.epsi.network/pages/register.jsp">Inscription</a>
+=======
+<br>
+>>>>>>> 521e36d229a5c7100c01a84eedfc730cfae0f90a
 <form method="post" action="connexion">
     <fieldset>
         <legend>Connexion</legend>
         <p>Saisissez votre ID et votre mot de passe</p>
 
         <label for="id">Adresse email <span class="requis">*</span></label>
-        <input type="text" id="id" name="id" value="<c:out value="${user.id}"/>" size="20" maxlength="60" />
+        <input type="text" id="id" name="id" size="20" maxlength="60" />
         <span class="erreur">${form.erreurs['id']}</span>
         <br />
 
