@@ -38,18 +38,15 @@ public class Connexion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
 		User user = userService.getUserById(request.getParameter("id"));
-		
-		logger.info(user.getPassword());
-		logger.info(request.getParameter("password"));
 		
 		if(user.getPassword().equals(request.getParameter("password"))){
 			logger.info("go");
 			request.getSession().setAttribute("user", user);
-			request.getRequestDispatcher("/pages/home").forward(request, response);
+			request.getRequestDispatcher("/messages").forward(request, response);
 			
 		}else{
+			logger.info("pasgo");
 			request.getRequestDispatcher("/pages/connexion.jsp").forward(request, response);
 		}
 	}
