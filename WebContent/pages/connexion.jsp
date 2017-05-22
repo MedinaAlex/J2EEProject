@@ -1,5 +1,4 @@
 <h1>form</h1>
-
 <form method="post" action="connexion">
     <fieldset>
         <legend>Connexion</legend>

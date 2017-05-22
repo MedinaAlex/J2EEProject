@@ -8,12 +8,18 @@
 <title>Ajout d'un message</title>
 </head>
 <body>
+<% 
+	User user = (User) request.getSession().getAttribute("user");
+	if(user.getAdministrator()){
+		out.println("<a href='/fr.epsi.network/Admin'>Administrer</a>") ;
+	}
+%>
 <a href="/fr.epsi.network/pages/addMessage.jsp">Ajouter un message</a>
 <br>
 Voici la liste des messages :
 <%
 	List<Message> messages = (List<Message>) request.getSession().getAttribute("messages");
-	User user = (User) request.getSession().getAttribute("user");
+	
 
 	for(Message message : messages){
 		out.println("<br><br>");

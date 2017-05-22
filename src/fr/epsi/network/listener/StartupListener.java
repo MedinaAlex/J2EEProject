@@ -52,5 +52,4 @@ public class StartupListener implements ServletContextListener {
         	e.printStackTrace();
         }	
     }
-	
 }

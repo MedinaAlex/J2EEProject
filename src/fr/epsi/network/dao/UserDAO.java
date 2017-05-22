@@ -101,7 +101,7 @@ public class UserDAO implements IUserDao {
 		JDBC con = new JDBC();
 
 		try {
-			con.sqlRequete("delete from users where id = "+ user.getId());
+			con.sqlRequete("delete from users where id = '"+ user.getId()+"'");
 			logger.info("User " + user.getId() + " supprimé");
 		}catch (SQLException e) {
 			e.printStackTrace();
