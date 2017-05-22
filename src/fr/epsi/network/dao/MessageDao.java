@@ -17,6 +17,10 @@ import fr.epsi.network.beans.User;
 public class MessageDao implements IMessageDao{
 	
 	private static Logger logger = LogManager.getLogger(UserDAO.class);
+	
+	public MessageDao() {
+		super();
+	}
 
 	@Override
 	public List<Message> getListOfMessages(User user) {
